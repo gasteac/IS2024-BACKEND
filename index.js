@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 // import path from "path";
 dotenv.config();
 import authRoutes from "./routes/auth.routes.js";
-
+import cors from "cors";
 mongoose
   .connect(process.env.MONGO)
   .then(console.log("Connected to MongoDB"))
@@ -14,6 +14,7 @@ mongoose
 // const __dirname = path.resolve();
 export const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 const port = process.env.PORT || 3000;
