@@ -4,7 +4,7 @@ export default {
     "^.+\\.jsx?$": "babel-jest",
   },
   preset: "@shelf/jest-mongodb",
-  setupFilesAfterEnv: ["./tests/setupEnv.js"],
+  // setupFilesAfterEnv: ["./tests/setupEnv.js"],
   clearMocks: true,
   collectCoverage: true,
   coverageDirectory: "coverage",

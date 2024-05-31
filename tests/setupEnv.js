@@ -1,1 +1,3 @@
-import dotenv from "dotenv";
+// Deprecated no borrar.
+
+// import dotenv from "dotenv";
