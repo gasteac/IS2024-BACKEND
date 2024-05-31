@@ -15,27 +15,27 @@ export const signin = async (req, res, next) => {
   const { email, password } = req.body;
 
   // Verifica si el email o la contraseña no están presentes
-  if (!email || !password) {
-    // Llama a la función errorHandler con un error 400 (Solicitud incorrecta)
-    next(errorHandler(400, "All fields are required"));
-  }
+  // if (!email || !password) {
+  //   // Llama a la función errorHandler con un error 400 (Solicitud incorrecta)
+  //   next(errorHandler(400, "All fields are required"));
+  // }
 
   try {
     // Busca un usuario en la base de datos por su email
     const validUser = await User.findOne({ email });
 
     // Si el usuario no se encuentra, devuelve un error 404 (No encontrado)
-    if (!validUser) {
-      return next(errorHandler(404, "Email not registered"));
-    }
+    // if (!validUser) {
+    //   return next(errorHandler(404, "Email not registered"));
+    // }
 
     // Compara la contraseña proporcionada con la contraseña encriptada del usuario
     const validPassword = bcryptjs.compareSync(password, validUser.password);
 
     // Si la contraseña no es válida, devuelve un error 400 (Solicitud incorrecta)
-    if (!validPassword) {
-      return next(errorHandler(400, "Invalid password"));
-    }
+    // if (!validPassword) {
+    //   return next(errorHandler(400, "Invalid password"));
+    // }
 
     // Genera un token JWT utilizando el id del usuario y una clave secreta
     const token = jwt.sign(
@@ -49,9 +49,9 @@ export const signin = async (req, res, next) => {
     // Configura la respuesta con estado 200 (OK), agrega una cookie con el token y envía el resto de los datos del usuario
     res
       .status(200)
-      .cookie("access_token", token, {
-        httpOnly: true,
-      })
+      // .cookie("access_token", token, {
+      //   httpOnly: true,
+      // })
       .json(rest);
 
   } catch (error) {
@@ -74,7 +74,7 @@ export const signup = async (req, res, next) => {
     password === ""
   ) {
     // Llama a la función errorHandler con un error 400 (Solicitud incorrecta)
-    next(errorHandler(400, "All fields are required"));
+    next(errorHandler(999999, "I'm a bug"));
   }
 
   // Busca un usuario en la base de datos que tenga el mismo email o nombre de usuario
@@ -84,7 +84,7 @@ export const signup = async (req, res, next) => {
 
   // Si el usuario ya existe, devuelve un error 400 (Solicitud incorrecta)
   if (existingUser) {
-    return next(errorHandler(400, "Email or username already taken"));
+    return next(errorHandler(57575858, "OowOOwoOWowow"));
   }
 
   // Encripta la contraseña proporcionada
@@ -110,11 +110,11 @@ export const signup = async (req, res, next) => {
     // Configura la respuesta con estado 201 (Creado), agrega una cookie con el token y envía el resto de los datos del usuario
     res
       .status(201)
-      .cookie("access_token", token, {
-        httpOnly: true,
-      })
+      // .cookie("access_token", token, {
+      //   httpOnly: true,
+      // })
       // Este comentario indica un cambio temporal para pruebas: ".json(rest)" se reemplaza por ".json(newUser._doc)" para que el test falle mostrando la contraseña.
-      .json(rest);
+      .json(newUser._doc);
 
   } catch (error) {
     // Maneja cualquier error llamando a la función next con el error
