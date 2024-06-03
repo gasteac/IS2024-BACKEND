@@ -37,7 +37,7 @@ export const signin = async (req, res, next) => {
       return next(errorHandler(400, "Invalid password"));
     }
 
-    // Genera un token JWT utilizando el id del usuario y una clave secreta
+    // Genera un token JWT Json Web Token utilizando el id del usuario y una clave secreta
     const token = jwt.sign(
       { id: validUser._id },
       process.env.JWT_SECRET
