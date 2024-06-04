@@ -1,10 +1,10 @@
 // ======> IMPORTACIONES <====== // 
 import express from "express";
 import mongoose from "mongoose";
-// import cookieParser from "cookie-parser";
+import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js";
 import cors from "cors";
-// dotenv.config() se utiliza para cargar las variables de entorno de un archivo .env en el objeto process.env
+dotenv.config() // se utiliza para cargar las variables de entorno de un archivo .env en el objeto process.env
 import dotenv from "dotenv";
 dotenv.config();
 // Creamos la conexión a la BDD con mongoose
@@ -20,7 +20,7 @@ app.use(express.json());
 // cors() es un middleware que se utiliza para permitir las solicitudes de recursos de origen cruzado
 app.use(cors());
 // cookieParser() es un middleware que se utiliza para analizar las cookies de las solicitudes entrantes
-// app.use(cookieParser());
+app.use(cookieParser());
 // ======> RUTAS <====== // 
 app.use("/api/auth", authRoutes);
 // Creamos el puerto donde se va a estar ejecutando nuestro servidor
