@@ -2,7 +2,7 @@ name: Slack
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "staging" ]
     types: [opened, synchronize, reopened, closed]
 
 
