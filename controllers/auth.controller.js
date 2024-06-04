@@ -26,6 +26,7 @@ export const signin = async (req, res, next) => {
     if (!validUser) {
       return next(errorHandler(404, "Email not registered"));
     }
+    
     // Compara la contraseña proporcionada con la contraseña encriptada del usuario
     const validPassword = bcryptjs.compareSync(password, validUser.password);
 
