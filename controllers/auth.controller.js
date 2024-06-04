@@ -21,7 +21,6 @@ export const signin = async (req, res, next) => {
   }
 
   try {
-    
     // Busca un usuario en la base de datos por su email
     const validUser = await User.findOne({ email });
 
