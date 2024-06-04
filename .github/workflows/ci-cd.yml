@@ -16,6 +16,8 @@ jobs:
       MONGO: ${{ secrets.MONGO }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       PORT: ${{ secrets.PORT }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
@@ -23,6 +25,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
+    - name: Install dependencies
+      run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    - uses: sonarsource/sonarqube-scan-action@master
+   
