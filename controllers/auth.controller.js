@@ -13,7 +13,6 @@ import jwt from "jsonwebtoken";
 export const signin = async (req, res, next) => {
   // Extrae el email y la contraseña del cuerpo de la solicitud (lo que le manda el front)
   const { email, password } = req.body;
-
   // Verifica si el email o la contraseña no están presentes
   if (!email || !password) {
     // Llama a la función errorHandler con un error 400 (Solicitud incorrecta)
