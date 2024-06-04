@@ -3,7 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js";
-import cors from "cors";
+// import cors from "cors";
 dotenv.config() // se utiliza para cargar las variables de entorno de un archivo .env en el objeto process.env
 import dotenv from "dotenv";
 dotenv.config();
@@ -18,7 +18,7 @@ export const app = express();
 // express.json() es un middleware que se utiliza para analizar las solicitudes entrantes con cargas JSON
 app.use(express.json());
 // cors() es un middleware que se utiliza para permitir las solicitudes de recursos de origen cruzado
-app.use(cors());
+// app.use(cors());
 // cookieParser() es un middleware que se utiliza para analizar las cookies de las solicitudes entrantes
 app.use(cookieParser());
 // ======> RUTAS <====== // 
