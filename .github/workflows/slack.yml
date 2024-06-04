@@ -19,6 +19,6 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "*Who?:* ${{ github.event.pull_request.user.login }}\n*Action:* ${{ github.event.action }}\n*Merged:* ${{ github.event.pull_request.merged }}"
+                  "text": "*Who:* ${{ github.event.pull_request.user.login }}\n*Action:* ${{ github.event.action }}\n*Merged:* ${{ github.event.pull_request.merged }}"
                 }
               },{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"<${{ github.event.pull_request.html_url }}|View Pull Request>\"}}]}'
