@@ -1,13 +1,12 @@
-name: Slack Merge Notification
+name: Slack Notifications
 
 on:
   pull_request:
     branches: [ "main" ]
-    types: [closed]
+    types: [opened, synchronize, reopened, closed]
 
 jobs:
   slack:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
     - name: Notify slack
@@ -23,14 +22,14 @@ jobs:
                  "type": "section",
                  "text": {
                    "type": "mrkdwn",
-                   "text": "*Pull Request Merged:* ${{ github.event.pull_request.title }}"
+                   "text": "*Pull Request:* ${{ github.event.pull_request.title }}"
                  }
                },
                {
                  "type": "section",
                  "text": {
                    "type": "mrkdwn",
-                   "text": "*Who?:* ${{ github.event.pull_request.user.login }}\n*Merged by:* ${{ github.event.pull_request.merged_by.login }}"
+                   "text": "*Who?:* ${{ github.event.pull_request.user.login }}\n*State:* ${{ github.event.action }}\n*Merged:* ${{ github.event.pull_request.merged }}"
                  }
                },
                {
