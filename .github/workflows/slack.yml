@@ -1,9 +1,10 @@
-name: Slack Notifications
+name: Slack
 
 on:
   pull_request:
     branches: [ "main" ]
     types: [opened, synchronize, reopened, closed]
+
 
 jobs:
   slack:
@@ -14,30 +15,10 @@ jobs:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       uses: pullreminders/slack-action@master
       with:
-         args: |
-           {
-             "channel": "C071K0XLEDR",
-             "blocks": [
-               {
-                 "type": "section",
-                 "text": {
-                   "type": "mrkdwn",
-                   "text": "*Pull Request:* ${{ github.event.pull_request.title }}"
-                 }
-               },
-               {
-                 "type": "section",
-                 "text": {
-                   "type": "mrkdwn",
-                   "text": "*Who?:* ${{ github.event.pull_request.user.login }}\n*State:* ${{ github.event.action }}\n*Merged:* ${{ github.event.pull_request.merged }}"
-                 }
-               },
-               {
-                 "type": "section",
-                 "text": {
-                   "type": "mrkdwn",
-                   "text": "<${{ github.event.pull_request.html_url }}|View Pull Request>"
-                 }
-               }
-             ]
-           }
+         args: '{\"channel\":\"C071K0XLEDR\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Pull Request:* ${{ github.event.pull_request.title }}\"}}, {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*Who?:* ${{ github.event.pull_request.user.login }}\n*Action:* ${{ github.event.action }}\n*Merged:* ${{ github.event.pull_request.merged }}"
+                }
+              },{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"<${{ github.event.pull_request.html_url }}|View Pull Request>\"}}]}'
