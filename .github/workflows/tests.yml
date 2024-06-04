@@ -3,7 +3,7 @@ name: CI and Slack Notifications
 on:
   pull_request:
     branches: [ "main" ]
-    types: [opened, synchronize, reopened, closed, created]
+    types: [opened, synchronize, reopened, closed]
 
 jobs:
   build:
