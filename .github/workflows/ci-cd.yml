@@ -41,6 +41,9 @@ jobs:
   sonarqube:
     name: SonarQube Scan
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -52,7 +55,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 20.x
+        node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
     - name: Install dependencies
