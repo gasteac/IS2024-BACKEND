@@ -16,7 +16,7 @@ export const signin = async (req, res, next) => {
 
   // Verifica si el email o la contraseña no están presentes
   if (!email || !password) {
-    // Llama a la función errorHandler con un error 400 (Solicitud incorrecta)
+    // Llama a la función errorHandler con un error 400  (Solicitud incorrecta)
     next(errorHandler(400, "All fields are required"));
   }
 
