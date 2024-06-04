@@ -22,7 +22,6 @@ export const signin = async (req, res, next) => {
   try {
     // Busca un usuario en la base de datos por su email
     const validUser = await User.findOne({ email });
-
     // Si el usuario no se encuentra, devuelve un error 404 (No encontrado)
     if (!validUser) {
       return next(errorHandler(404, "Email not registered"));
