@@ -19,7 +19,7 @@ export const signin = async (req, res, next) => {
     // Llama a la función errorHandler con un error 400 (Solicitud incorrecta)
     next(errorHandler(400, "All fields are required"));
   }
-
+  //dsfdsfgdgfd
   try {
     // Busca un usuario en la base de datos por su email
     const validUser = await User.findOne({ email });
