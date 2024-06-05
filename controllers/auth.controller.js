@@ -20,7 +20,6 @@ export const signin = async (req, res, next) => {
     next(errorHandler(400, "All fields are required"));
   }
 
-  
   try {
     // Busca un usuario en la base de datos por su email
     const validUser = await User.findOne({ email });
