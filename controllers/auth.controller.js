@@ -99,7 +99,6 @@ export const signup = async (req, res, next) => {
   try {
     // Guarda el nuevo usuario en la base de datos
     await newUser.save();
-
     // Genera un token JWT utilizando el id del nuevo usuario y una clave secreta
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
 
