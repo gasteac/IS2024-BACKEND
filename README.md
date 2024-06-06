@@ -4,6 +4,9 @@
 ![schema](https://github.com/gasteac/IS2024-FRONTEND/blob/main/public/images/InfraIS2024.png?raw=true)
 
 #### Check it out here: [https://vicarious-zuzana-gasteac-0b425a0f.koyeb.app/](https://vicarious-zuzana-gasteac-0b425a0f.koyeb.app/)
+
+#### Frontend repo: [https://github.com/gasteac/IS2024-FRONTEND](https://github.com/gasteac/IS2024-FRONTEND)
+
 ### This project was made with:
  - React + Vite
  - Redux
