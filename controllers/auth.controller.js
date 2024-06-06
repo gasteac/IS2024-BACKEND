@@ -106,7 +106,6 @@ export const signup = async (req, res, next) => {
     // Extrae la contraseña del objeto nuevo usuario para no enviarla en la respuesta
     const { password, ...rest } = newUser._doc;
 
-    
     // Configura la respuesta con estado 201 (Creado), agrega una cookie con el token y envía el resto de los datos del usuario
     res
       .status(201)
