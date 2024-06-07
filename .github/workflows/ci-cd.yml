@@ -37,6 +37,13 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+    - uses: act10ns/slack@v2
+      with:
+        status: ${{ job.status }}
+        steps: ${{ toJson(steps) }}
+      if: always()
+
+
     - name: Report Status
       if: always()
       uses: ravsamhq/notify-slack-action@v1
