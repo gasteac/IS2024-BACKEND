@@ -108,6 +108,7 @@ export const signup = async (req, res, next) => {
     
     // Configura la respuesta con estado 201 (Creado), agrega una cookie con el token y envía el resto de los datos del usuario
     res
+    
       .status(201)
       .cookie("access_token", token, {
         httpOnly: true,
