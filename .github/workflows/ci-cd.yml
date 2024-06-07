@@ -28,9 +28,18 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build
-    - run: npm test
+    - name: Dependencies
+      id: Dependencies
+      run: npm ci
+    - name: Build
+      id: Build
+      run: npm run build
+    - name: Unit Tests
+      id: Unit Tests
+      run: npm test
+    - name: SonarQube Scan
+      id: SonarQube Scan
+      uses: sonarsource/sonarqube-scan-action@master
 
     - name: Report Status
       if: always()
