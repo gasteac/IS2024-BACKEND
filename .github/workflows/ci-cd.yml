@@ -1,4 +1,4 @@
-name: CI Workflow
+name: CI-CD
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
     types: [opened, synchronize, reopened, closed]
 
 jobs:
-  test:
+  TESTS-SONARQUBE:
     name: TESTS
     runs-on: ubuntu-latest
     strategy:
