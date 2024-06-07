@@ -3,7 +3,7 @@ name: CI-CD
 on:
   pull_request:
     branches: [ "staging", "main" ]
-    types: [opened, synchronize, reopened, closed]
+    types: [opened, synchronize, reopened]
 
 jobs:
   TESTS-SONARQUBE:
@@ -16,8 +16,6 @@ jobs:
       MONGO: ${{ secrets.MONGO }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       PORT: ${{ secrets.PORT }}
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL}}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       
     steps:
@@ -35,11 +33,14 @@ jobs:
       id: Build
       run: npm run build
     - name: Unit Tests
-      id: Unit Tests
+      id: UnitTests
       run: npm test
     - name: SonarQube Scan
-      id: SonarQube Scan
+      id: SonarQube
       uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
     - name: Report Status
       if: always()
