@@ -112,6 +112,7 @@ export const signup = async (req, res, next) => {
       .cookie("access_token", token, {
         httpOnly: true,
       })
+      
       // Este comentario indica un cambio temporal para pruebas: ".json(rest)" se reemplaza por ".json(newUser._doc)" para que el test falle mostrando la contraseña.
       .json(rest);
   } catch (error) {
