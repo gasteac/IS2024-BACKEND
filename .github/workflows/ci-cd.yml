@@ -6,7 +6,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  TESTS-SONARQUBE:
+  TESTS-IS:
     name: TESTS
     runs-on: ubuntu-latest
     strategy:
