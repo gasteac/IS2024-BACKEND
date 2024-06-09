@@ -49,7 +49,7 @@ jobs:
           tags: ${{secrets.DOCKER_USERNAME}}/dracosnape-app:latest
 
     - name: Pull Docker image
-      run: docker pull
+      run: docker pull ${{secrets.DOCKER_USERNAME}}/dracosnape-app:latest
 
     - name: Report Status
       if: always()
