@@ -31,12 +31,13 @@ export const signin = async (req, res, next) => {
     // Compara la contraseña proporcionada con la contraseña encriptada del usuario
     const validPassword = bcryptjs.compareSync(password, validUser.password);
 
+    
     // Si la contraseña no es válida, devuelve un error 400 (Solicitud incorrecta)
     if (!validPassword) {
       return next(errorHandler(400, "Invalid password"));
     }
 
-    
+
     // Genera un token JWT Json Web Token utilizando el id del usuario y una clave secreta
     const token = jwt.sign(
       { id: validUser._id },
