@@ -106,7 +106,6 @@ export const signup = async (req, res, next) => {
     // Extrae la contraseña del objeto nuevo usuario para no enviarla en la respuesta
     const { password, ...rest } = newUser._doc;
 
-    
     // Configura la respuesta con estado 201 (Creado), agrega una cookie con el token y envía el resto de los datos del usuario
     res
       .status(201)
@@ -115,7 +114,6 @@ export const signup = async (req, res, next) => {
       })
       // Este comentario indica un cambio temporal para pruebas: ".json(rest)" se reemplaza por ".json(newUser._doc)" para que el test falle mostrando la contraseña.
       .json(rest);
-
   } catch (error) {
     // Maneja cualquier error llamando a la función next con el error
     next(error);
