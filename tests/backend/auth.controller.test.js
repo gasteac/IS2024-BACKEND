@@ -68,7 +68,7 @@ describe("POST /signup", () => {
       email: "test@example.com",
       password: "testpassword",
     };
- 
+
     // Creamos y guardamos un usuario que tenga los mismos datos que el usuario que vamos a crear
     const testUserExist = new User(userData);
     await testUserExist.save();
