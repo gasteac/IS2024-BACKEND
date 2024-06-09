@@ -58,7 +58,6 @@ export const signin = async (req, res, next) => {
   }
 };
 
-
 export const signup = async (req, res, next) => {
   // Extrae el nombre de usuario, email y contraseña del cuerpo de la solicitud
   const { username, email, password } = req.body;
