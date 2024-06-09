@@ -52,7 +52,6 @@ export const signin = async (req, res, next) => {
         httpOnly: true,
       })
       .json(rest);
-
   } catch (error) {
     // Maneja cualquier error llamando a la función next con el error
     next(error);
