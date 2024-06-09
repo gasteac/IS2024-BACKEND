@@ -4,9 +4,9 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js";
 import cors from "cors";
-dotenv.config() // se utiliza para cargar las variables de entorno de un archivo .env en el objeto process.env
-import dotenv from "dotenv";
-dotenv.config();
+// dotenv.config() 
+// import dotenv from "dotenv";
+// dotenv.config();
 // Creamos la conexión a la BDD con mongoose
 mongoose
   .connect(process.env.MONGO)
