@@ -191,7 +191,6 @@ describe("POST /signin", () => {
       password: hashedPassword,
     });
     await testUser.save();
-
     // Enviamos una petición para iniciar sesión con los datos correctos del usuario
     const response = await request(app).post("/api/auth/signin").send({
       email: "test@example.com",
