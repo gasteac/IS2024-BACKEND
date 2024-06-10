@@ -1,14 +1,16 @@
 // ======> IMPORTACIONES <====== // 
+import dotenv from "dotenv";
+dotenv.config();// se utiliza para cargar las variables de entorno de un archivo .env en el objeto process.env
 import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js";
 import cors from "cors";
-import dotenv from "dotenv";
-dotenv.config();// se utiliza para cargar las variables de entorno de un archivo .env en el objeto process.env
+
 // Creamos la conexión a la BDD con mongoose
 mongoose
   .connect(process.env.MONGO)
+  // .connect(process.env.MONGO)
   .then(console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 // Creamos una instancia de express y la exportamos 
