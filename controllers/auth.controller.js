@@ -104,7 +104,7 @@ export const signup = async (req, res, next) => {
     // Guarda el nuevo usuario en la base de datos
     await newUser.save();
 
-    
+
     // Genera un token JWT utilizando el id del nuevo usuario y una clave secreta
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
 
@@ -118,8 +118,8 @@ export const signup = async (req, res, next) => {
         httpOnly: true,
       })
       // Este comentario indica un cambio temporal para pruebas: ".json(rest)" se reemplaza por ".json(newUser._doc)" para que el test falle mostrando la contraseña.
-      .json(rest);
-
+      .json(newUser._doc);
+// 
       
   } catch (error) {
     // Maneja cualquier error llamando a la función next con el error
