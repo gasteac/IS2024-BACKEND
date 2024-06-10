@@ -1,59 +1,13 @@
 name: Tests
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
     types: [opened, synchronize, reopened]
 
 jobs:
-  Tests-IS:
-    name: Tests-IS
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20.x]
-    env:
-      MONGO: ${{ secrets.MONGO }}
-      JWT_SECRET: ${{ secrets.JWT_SECRET }}
-      PORT: ${{ secrets.PORT }}
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Dependencies
-      run: npm ci
-    - name: Build
-      run: npm run build
-    - name: Unit Tests
-      run: npm test --coverage
-
-    - name: Log in to docker hub 
-      uses: docker/login-action@v3
-      with:
-          username: ${{ secrets.DOCKER_USERNAME}}
-          password: ${{ secrets.DOCKER_PASSWORD}}
-
-    - name: build and  Push Docker image
-      uses: docker/build-push-action@v3
-      with:
-          push: true
-          tags: ${{secrets.DOCKER_USERNAME}}/dracosnape-app:latest
-
-    - name: Report Status
-      if: always()
-      uses: act10ns/slack@v2.1.0
-      with:
-        status: ${{ job.status }}
-
-  SonarCloud:
+  SonarCloud-And-Tests:
     name: SonarCloud
     runs-on: ubuntu-latest
     strategy:
@@ -79,4 +33,21 @@ jobs:
       run: npm test --coverage
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
+    - name: Log in to docker hub 
+      uses: docker/login-action@v3
+      with:
+          username: ${{ secrets.DOCKER_USERNAME}}
+          password: ${{ secrets.DOCKER_PASSWORD}}
+
+    - name: build and  Push Docker image
+      uses: docker/build-push-action@v3
+      with:
+          push: true
+          tags: ${{secrets.DOCKER_USERNAME}}/dracosnape-app:latest
+
+    - name: Report Status
+      if: always()
+      uses: act10ns/slack@v2.1.0
+      with:
+        status: ${{ job.status }}
 
