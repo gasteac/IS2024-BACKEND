@@ -26,7 +26,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
     - run: npm install mongodb
     - name: Dependencies
       run: npm ci
@@ -34,6 +33,9 @@ jobs:
       run: npm run build
     - name: Unit Tests
       run: npm test --coverage
+
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
         
     - name: Log in to docker hub 
       uses: docker/login-action@v3
