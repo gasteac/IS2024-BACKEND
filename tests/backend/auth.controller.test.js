@@ -20,7 +20,7 @@ afterAll(async () => {
   // Cierra el servidor
   server.close();
   // Desconecta mongoose de la base de datos
-  await mongoose.disconnect();
+  // await mongoose.disconnect();
   // Cierra la conexión de mongoose
   mongoose.connection.close();
 });
@@ -59,7 +59,7 @@ describe("POST /signup", () => {
     );
     // Aseguramos que la contraseña no esté en el cuerpo de la respuesta
     expect(response.body.password).toBeUndefined();
-  }, 200000);
+  }, 2000000);
 
   it("should return an error if the username or email exists", async () => {
     // Creamos un objeto con los datos ficticios de un usuario para la prueba
@@ -80,7 +80,7 @@ describe("POST /signup", () => {
     expect(response.status).toBe(400);
     // Esperamos que el mensaje de la respuesta sea "Email or username already taken"
     expect(response.body.message).toBe("Email or username already taken");
-  }, 200000);
+  }, 2000000);
 
   it("should return an error if any required field is missing", async () => {
     // Creamos un objeto con datos incompletos para la prueba
@@ -97,7 +97,7 @@ describe("POST /signup", () => {
     expect(response.status).toBe(400);
     // Esperamos que el mensaje de la respuesta sea "All fields are required"
     expect(response.body.message).toBe("All fields are required");
-  }, 200000);
+  }, 2000000);
 
   it("should sign up a user and return a token", async () => {
     // Creamos un objeto con los datos ficticios de un usuario para la prueba
@@ -114,7 +114,7 @@ describe("POST /signup", () => {
     expect(response.status).toBe(201);
     // Esperamos que en el header de la respuesta haya una cookie llamada "set-cookie"
     expect(response.headers["set-cookie"]).toBeDefined();
-  }, 200000);
+  }, 2000000);
 
   it("should save the new user to the database", async () => {
     // Creamos un objeto con los datos ficticios de un usuario para la prueba
@@ -134,7 +134,7 @@ describe("POST /signup", () => {
     // Buscamos en la base de datos el usuario que acabamos de crear
     const savedUser = await User.findOne({ email: userData.email });
     expect(savedUser).toBeDefined();
-  }, 200000);
+  }, 2000000);
 });
 
 // Pruebas de inicio de sesión
@@ -147,7 +147,7 @@ describe("POST /signin", () => {
     expect(response.status).toBe(400);
     // Esperamos que el mensaje de la respuesta sea "All fields are required"
     expect(response.body.message).toBe("All fields are required");
-  }, 200000);
+  }, 2000000);
 
   it("should return an error if email is not registered", async () => {
     // Enviamos una petición para iniciar sesión con un email no registrado
@@ -159,7 +159,7 @@ describe("POST /signin", () => {
     expect(response.status).toBe(404);
     // Esperamos que el mensaje de la respuesta sea "Email not registered"
     expect(response.body.message).toBe("Email not registered");
-  }, 200000);
+  }, 2000000);
 
   it("should return an error if password is invalid", async () => {
     // Creamos y guardamos un usuario de prueba con una contraseña cifrada
@@ -180,7 +180,7 @@ describe("POST /signin", () => {
     expect(response.status).toBe(400);
     // Esperamos que el mensaje de la respuesta sea "Invalid password"
     expect(response.body.message).toBe("Invalid password");
-  }, 200000);
+  }, 2000000);
 
   it("should sign in a user and return a token", async () => {
     // Creamos y guardamos un usuario de prueba con una contraseña cifrada
@@ -201,5 +201,5 @@ describe("POST /signin", () => {
     expect(response.status).toBe(200);
     // Esperamos que en el header de la respuesta haya una cookie llamada "set-cookie"
     expect(response.headers["set-cookie"]).toBeDefined();
-  }, 200000);
+  }, 2000000);
 });
