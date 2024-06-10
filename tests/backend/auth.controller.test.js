@@ -31,7 +31,6 @@ beforeEach(async () => {
   await User.deleteMany({ username: "testuser" });
   // Elimina todos los usuarios de prueba con el nombre de usuario "testuser2"
   await User.deleteMany({ username: "testuser2" });
-  jest.setTimeout(30000);
 });
 
 // Pruebas de registro de usuario
