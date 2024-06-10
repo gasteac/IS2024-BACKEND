@@ -18,6 +18,7 @@ jobs:
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       PORT: ${{ secrets.PORT }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       
     steps:
     - name: Checkout code
