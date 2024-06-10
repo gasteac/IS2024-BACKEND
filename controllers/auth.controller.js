@@ -107,7 +107,6 @@ export const signup = async (req, res, next) => {
 
     // Genera un token JWT utilizando el id del nuevo usuario y una clave secreta
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
-
     // Extrae la contraseña del objeto nuevo usuario para no enviarla en la respuesta
     const { password, ...rest } = newUser._doc;
     // Configura la respuesta con estado 201 (Creado), agrega una cookie con el token y envía el resto de los datos del usuario
