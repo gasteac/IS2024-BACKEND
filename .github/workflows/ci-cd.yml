@@ -18,6 +18,7 @@ jobs:
       MONGO: ${{ secrets.MONGO }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       PORT: ${{ secrets.PORT }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
