@@ -41,6 +41,8 @@ export const signin = async (req, res, next) => {
     const token = jwt.sign(
       { id: validUser._id },
       process.env.JWT_SECRET
+      // process.env.JWT_SECRET
+
     );
 
     // Extrae la contraseña del objeto usuario para no enviarla en la respuesta
