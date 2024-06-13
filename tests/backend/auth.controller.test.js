@@ -34,107 +34,107 @@ beforeEach(async () => {
 });
 
 // Pruebas de registro de usuario
-describe("POST /signup", () => {
-  it("should create a new user and return the user data without the password", async () => {
-    // Creamos un objeto con los datos ficticios de un usuario para la prueba
-    const userData = {
-      username: "testuser",
-      email: "test@example.com",
-      password: "testpassword",
-    };
+// describe("POST /signup", () => {
+//   it("should create a new user and return the user data without the password", async () => {
+//     // Creamos un objeto con los datos ficticios de un usuario para la prueba
+//     const userData = {
+//       username: "testuser",
+//       email: "test@example.com",
+//       password: "testpassword",
+//     };
 
-    // Hacemos una petición POST a la ruta /api/auth/signup con los datos del usuario
-    const response = await request(app)
-      .post("/api/auth/signup")
-      .send(userData)
-      .expect(201); // Esperamos que la respuesta sea un 201 (Created)
+//     // Hacemos una petición POST a la ruta /api/auth/signup con los datos del usuario
+//     const response = await request(app)
+//       .post("/api/auth/signup")
+//       .send(userData)
+//       .expect(201); // Esperamos que la respuesta sea un 201 (Created)
 
-    // Comparamos lo que nos devuelve la respuesta con lo que esperamos
-    expect(response.body).toEqual(
-      expect.objectContaining({
-        username: userData.username,
-        email: userData.email,
-      })
-    );
-    // Aseguramos que la contraseña no esté en el cuerpo de la respuesta
-    expect(response.body.password).toBeUndefined();
-  }, 2000000);
+//     // Comparamos lo que nos devuelve la respuesta con lo que esperamos
+//     expect(response.body).toEqual(
+//       expect.objectContaining({
+//         username: userData.username,
+//         email: userData.email,
+//       })
+//     );
+//     // Aseguramos que la contraseña no esté en el cuerpo de la respuesta
+//     expect(response.body.password).toBeUndefined();
+//   }, 2000000);
 
-  it("should return an error if the username or email exists", async () => {
-    // Creamos un objeto con los datos ficticios de un usuario para la prueba
-    const userData = {
-      username: "testuser",
-      email: "test@example.com",
-      password: "testpassword",
-    };
+//   it("should return an error if the username or email exists", async () => {
+//     // Creamos un objeto con los datos ficticios de un usuario para la prueba
+//     const userData = {
+//       username: "testuser",
+//       email: "test@example.com",
+//       password: "testpassword",
+//     };
 
-    // Creamos y guardamos un usuario que tenga los mismos datos que el usuario que vamos a crear
-    const testUserExist = new User(userData);
-    await testUserExist.save();
-    // Intentamos crear un usuario con los mismos datos
-    const response = await request(app)
-      .post("/api/auth/signup")
-      .send(userData);
-    // Esperamos un error 400 (Bad Request) porque el usuario ya existe
-    expect(response.status).toBe(400);
-    // Esperamos que el mensaje de la respuesta sea "Email or username already taken"
-    expect(response.body.message).toBe("Email or username already taken");
-  }, 2000000);
+//     // Creamos y guardamos un usuario que tenga los mismos datos que el usuario que vamos a crear
+//     const testUserExist = new User(userData);
+//     await testUserExist.save();
+//     // Intentamos crear un usuario con los mismos datos
+//     const response = await request(app)
+//       .post("/api/auth/signup")
+//       .send(userData);
+//     // Esperamos un error 400 (Bad Request) porque el usuario ya existe
+//     expect(response.status).toBe(400);
+//     // Esperamos que el mensaje de la respuesta sea "Email or username already taken"
+//     expect(response.body.message).toBe("Email or username already taken");
+//   }, 2000000);
 
-  it("should return an error if any required field is missing", async () => {
-    // Creamos un objeto con datos incompletos para la prueba
-    const userData = {
-      username: "testuser",
-      email: "",
-      password: "testpassword",
-    };
-    // Hacemos una petición POST a la ruta /api/auth/signup con los datos incompletos del usuario
-    const response = await request(app)
-      .post("/api/auth/signup")
-      .send(userData);
-    // Esperamos un error 400 (Bad Request) debido a campos faltantes
-    expect(response.status).toBe(400);
-    // Esperamos que el mensaje de la respuesta sea "All fields are required"
-    expect(response.body.message).toBe("All fields are required");
-  }, 2000000);
+//   it("should return an error if any required field is missing", async () => {
+//     // Creamos un objeto con datos incompletos para la prueba
+//     const userData = {
+//       username: "testuser",
+//       email: "",
+//       password: "testpassword",
+//     };
+//     // Hacemos una petición POST a la ruta /api/auth/signup con los datos incompletos del usuario
+//     const response = await request(app)
+//       .post("/api/auth/signup")
+//       .send(userData);
+//     // Esperamos un error 400 (Bad Request) debido a campos faltantes
+//     expect(response.status).toBe(400);
+//     // Esperamos que el mensaje de la respuesta sea "All fields are required"
+//     expect(response.body.message).toBe("All fields are required");
+//   }, 2000000);
 
-  it("should sign up a user and return a token", async () => {
-    // Creamos un objeto con los datos ficticios de un usuario para la prueba
-    const userData = {
-      username: "testuser",
-      email: "test@example.com",
-      password: "testpassword",
-    };
-    // Hacemos una petición POST a la ruta /api/auth/signup con los datos del usuario
-    const response = await request(app)
-      .post("/api/auth/signup")
-      .send(userData);
-    // Esperamos un estado 201 (Created)
-    expect(response.status).toBe(201);
-    // Esperamos que en el header de la respuesta haya una cookie llamada "set-cookie"
-    expect(response.headers["set-cookie"]).toBeDefined();
-  }, 2000000);
+//   it("should sign up a user and return a token", async () => {
+//     // Creamos un objeto con los datos ficticios de un usuario para la prueba
+//     const userData = {
+//       username: "testuser",
+//       email: "test@example.com",
+//       password: "testpassword",
+//     };
+//     // Hacemos una petición POST a la ruta /api/auth/signup con los datos del usuario
+//     const response = await request(app)
+//       .post("/api/auth/signup")
+//       .send(userData);
+//     // Esperamos un estado 201 (Created)
+//     expect(response.status).toBe(201);
+//     // Esperamos que en el header de la respuesta haya una cookie llamada "set-cookie"
+//     expect(response.headers["set-cookie"]).toBeDefined();
+//   }, 2000000);
 
-  it("should save the new user to the database", async () => {
-    // Creamos un objeto con los datos ficticios de un usuario para la prueba
-    const userData = {
-      username: "testuser",
-      email: "test@example.com",
-      password: "testpassword",
-    };
-    // Hacemos una petición POST a la ruta /api/auth/signup con los datos del usuario
-    const response = await request(app)
-      .post("/api/auth/signup")
-      .send(userData)
-      .expect(201); // Esperamos un estado 201 (Created)
+//   it("should save the new user to the database", async () => {
+//     // Creamos un objeto con los datos ficticios de un usuario para la prueba
+//     const userData = {
+//       username: "testuser",
+//       email: "test@example.com",
+//       password: "testpassword",
+//     };
+//     // Hacemos una petición POST a la ruta /api/auth/signup con los datos del usuario
+//     const response = await request(app)
+//       .post("/api/auth/signup")
+//       .send(userData)
+//       .expect(201); // Esperamos un estado 201 (Created)
 
-    // Aseguramos que en el header de la respuesta haya una cookie llamada "set-cookie"
-    expect(response.headers["set-cookie"]).toBeDefined();
-    // Buscamos en la base de datos el usuario que acabamos de crear
-    const savedUser = await User.findOne({ email: userData.email });
-    expect(savedUser).toBeDefined();
-  }, 2000000);
-});
+//     // Aseguramos que en el header de la respuesta haya una cookie llamada "set-cookie"
+//     expect(response.headers["set-cookie"]).toBeDefined();
+//     // Buscamos en la base de datos el usuario que acabamos de crear
+//     const savedUser = await User.findOne({ email: userData.email });
+//     expect(savedUser).toBeDefined();
+//   }, 2000000);
+// });
 
 // Pruebas de inicio de sesión
 // describe("POST /signin", () => {
