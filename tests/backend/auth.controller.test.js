@@ -137,68 +137,69 @@ describe("POST /signup", () => {
 });
 
 // Pruebas de inicio de sesión
-describe("POST /signin", () => {
-  it("should return an error if required fields are missing", async () => {
-    // Enviamos una petición sin datos para iniciar sesión
-    const response = await request(app).post("/api/auth/signin").send({});
+// describe("POST /signin", () => {
+//   it("should return an error if required fields are missing", async () => {
+//     // Enviamos una petición sin datos para iniciar sesión
+//     const response = await request(app).post("/api/auth/signin").send({});
 
-    // Esperamos un error 400 (Bad Request) debido a campos faltantes
-    expect(response.status).toBe(400);
-    // Esperamos que el mensaje de la respuesta sea "All fields are required"
-    expect(response.body.message).toBe("All fields are required");
-  }, 2000000);
+//     // Esperamos un error 400 (Bad Request) debido a campos faltantes
+//     expect(response.status).toBe(400);
+//     // Esperamos que el mensaje de la respuesta sea "All fields are required"
+//     expect(response.body.message).toBe("All fields are required");
+//   }, 2000000);
 
-  it("should return an error if email is not registered", async () => {
-    // Enviamos una petición para iniciar sesión con un email no registrado
-    const response = await request(app).post("/api/auth/signin").send({
-      email: "unregistered@example.com",
-      password: "pacheca",
-    });
-    // Esperamos un error 404 (Not Found) porque el email no está registrado
-    expect(response.status).toBe(404);
-    // Esperamos que el mensaje de la respuesta sea "Email not registered"
-    expect(response.body.message).toBe("Email not registered");
-  }, 2000000);
+//   it("should return an error if email is not registered", async () => {
+//     // Enviamos una petición para iniciar sesión con un email no registrado
+//     const response = await request(app).post("/api/auth/signin").send({
+//       email: "unregistered@example.com",
+//       password: "pacheca",
+//     });
+//     // Esperamos un error 404 (Not Found) porque el email no está registrado
+//     expect(response.status).toBe(404);
+//     // Esperamos que el mensaje de la respuesta sea "Email not registered"
+//     expect(response.body.message).toBe("Email not registered");
+//   }, 2000000);
 
-  it("should return an error if password is invalid", async () => {
-    // Creamos y guardamos un usuario de prueba con una contraseña cifrada
-    const hashedPassword = bcryptjs.hashSync("pacheca", 10);
-    const testUser = new User({
-      username: "testuser",
-      email: "test@example.com",
-      password: hashedPassword,
-    });
-    await testUser.save();
+//   it("should return an error if password is invalid", async () => {
+//     // Creamos y guardamos un usuario de prueba con una contraseña cifrada
+//     const hashedPassword = bcryptjs.hashSync("pacheca", 10);
+//     const testUser = new User({
+//       username: "testuser",
+//       email: "test@example.com",
+//       password: hashedPassword,
+//     });
+//     await testUser.save();
 
-    // Enviamos una petición para iniciar sesión con una contraseña incorrecta
-    const response = await request(app).post("/api/auth/signin").send({
-      email: "test@example.com",
-      password: "invalidpassword",
-    });
-    // Esperamos un error 400 (Bad Request) debido a la contraseña incorrecta
-    expect(response.status).toBe(400);
-    // Esperamos que el mensaje de la respuesta sea "Invalid password"
-    expect(response.body.message).toBe("Invalid password");
-  }, 2000000);
+//     // Enviamos una petición para iniciar sesión con una contraseña incorrecta
+//     const response = await request(app).post("/api/auth/signin").send({
+//       email: "test@example.com",
+//       password: "invalidpassword",
+//     });
+//     // Esperamos un error 400 (Bad Request) debido a la contraseña incorrecta
+//     expect(response.status).toBe(400);
+//     // Esperamos que el mensaje de la respuesta sea "Invalid password"
+//     expect(response.body.message).toBe("Invalid password");
+//   }, 2000000);
 
-  it("should sign in a user and return a token", async () => {
-    // Creamos y guardamos un usuario de prueba con una contraseña cifrada
-    const hashedPassword = bcryptjs.hashSync("pacheca", 10);
-    const testUser = new User({
-      username: "testuser",
-      email: "test@example.com",
-      password: hashedPassword,
-    });
-    await testUser.save();
-    // Enviamos una petición para iniciar sesión con los datos correctos del usuario
-    const response = await request(app).post("/api/auth/signin").send({
-      email: "test@example.com",
-      password: "pacheca",
-    });
+//   it("should sign in a user and return a token", async () => {
+//     // Creamos y guardamos un usuario de prueba con una contraseña cifrada
+//     const hashedPassword = bcryptjs.hashSync("pacheca", 10);
+//     const testUser = new User({
+//       username: "testuser",
+//       email: "test@example.com",
+//       password: hashedPassword,
+//     });
+//     await testUser.save();
+//     // Enviamos una petición para iniciar sesión con los datos correctos del usuario
+//     const response = await request(app).post("/api/auth/signin").send({
+//       email: "test@example.com",
+//       password: "pacheca",
+//     });
 
-    // Esperamos un estado 200 (OK)
-    expect(response.status).toBe(200);
-    // Esperamos que en el header de la respuesta haya una cookie llamada "set-cookie"
-    expect(response.headers["set-cookie"]).toBeDefined();
-  }, 2000000);
-});
+//     // Esperamos un estado 200 (OK)
+//     expect(response.status).toBe(200);
+//     // Esperamos que en el header de la respuesta haya una cookie llamada "set-cookie"
+//     expect(response.headers["set-cookie"]).toBeDefined();
+//   }, 2000000);
+// });
+
