@@ -19,7 +19,7 @@ export const app = express();
 // express.json() es un middleware que se utiliza para analizar las solicitudes entrantes con cargas JSON
 app.use(express.json());
 // cors() es un middleware que se utiliza para permitir las solicitudes de recursos de origen cruzado
-app.use(cors("https://is-2024-frontend.vercel.app/"));
+app.use(cors("https://is-2024-frontend.vercel.app"));
 // cookieParser() es un middleware que se utiliza para analizar las cookies de las solicitudes entrantes
 app.use(cookieParser());
 // ======> RUTAS <====== // 
