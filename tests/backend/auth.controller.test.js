@@ -145,7 +145,7 @@ describe("POST /signin", () => {
     // Esperamos un error 400 (Bad Request) debido a campos faltantes
     expect(response.status).toBe(400);
     // Esperamos que el mensaje de la respuesta sea "All fields are required"
-    expect(response.body.message).toBe("All fields are required");
+    expect(response.body.message).toBe("All fields are required...");
   }, 2000000);
 
   it("should return an error if email is not registered", async () => {
